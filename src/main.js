@@ -14,6 +14,13 @@ firebase.initializeApp({
   messagingSenderId: "966784454663"
 })
 
+// Manage the user auth
+firebase.auth().onAuthStateChanged(res => {
+  console.log(res)
+}, error => {
+  alert("Ha ocurrido un error")
+})
+
 new Vue({
   router,
   render: h => h(App)
