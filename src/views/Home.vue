@@ -1,18 +1,23 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <button @click="handleLogin()">Iniciar Sesión con Google</button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import firebase from 'firebase';
 export default {
   name: 'home',
-  components: {
-    HelloWorld
+  methods: {
+    handleLogin() {
+      let provider = new firebase.auth.GoogleAuthProvider();
+
+      firebase.auth().signInWithPopup(provider).then(res => {
+        alert(`Hola ${res.user.displayName}`)
+      }).catch(error => {
+        alert(error)
+      })
+    }
   }
 }
 </script>
